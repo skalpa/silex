@@ -15,40 +15,40 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "pimple/pimple": "~3.0",
-        "symfony/event-dispatcher": "~2.8|^3.0",
-        "symfony/http-foundation": "~2.8|^3.0",
-        "symfony/http-kernel": "~2.8|^3.0",
-        "symfony/routing": "~2.8|^3.0"
+        "php": ">=7.1.3",
+        "pimple/pimple": "dev-s4/master",
+        "symfony/event-dispatcher": "^4.0-dev",
+        "symfony/http-foundation": "^4.0-dev",
+        "symfony/http-kernel": "^4.0-dev",
+        "symfony/routing": "^4.0-dev"
     },
     "require-dev": {
-        "symfony/asset": "~2.8|^3.0",
-        "symfony/expression-language": "~2.8|^3.0",
-        "symfony/security": "~2.8|^3.0",
-        "symfony/config": "~2.8|^3.0",
-        "symfony/form": "~2.8|^3.0",
-        "symfony/browser-kit": "~2.8|^3.0",
-        "symfony/css-selector": "~2.8|^3.0",
-        "symfony/debug": "~2.8|^3.0",
-        "symfony/dom-crawler": "~2.8|^3.0",
-        "symfony/finder": "~2.8|^3.0",
-        "symfony/intl": "~2.8|^3.0",
-        "symfony/monolog-bridge": "~2.8|^3.0",
-        "symfony/doctrine-bridge": "~2.8|^3.0",
-        "symfony/options-resolver": "~2.8|^3.0",
+        "symfony/asset": "^4.0-dev",
+        "symfony/expression-language": "^4.0-dev",
+        "symfony/security": "^4.0-dev",
+        "symfony/config": "^4.0-dev",
+        "symfony/form": "^4.0-dev",
+        "symfony/browser-kit": "^4.0-dev",
+        "symfony/css-selector": "^4.0-dev",
+        "symfony/debug": "^4.0-dev",
+        "symfony/dom-crawler": "^4.0-dev",
+        "symfony/finder": "^4.0-dev",
+        "symfony/intl": "^4.0-dev",
+        "symfony/monolog-bridge": "^4.0-dev",
+        "symfony/doctrine-bridge": "^4.0-dev",
+        "symfony/options-resolver": "^4.0-dev",
         "symfony/phpunit-bridge": "^3.2",
-        "symfony/process": "~2.8|^3.0",
-        "symfony/serializer": "~2.8|^3.0",
-        "symfony/translation": "~2.8|^3.0",
-        "symfony/twig-bridge": "~2.8|^3.0",
-        "symfony/validator": "~2.8|^3.0",
-        "symfony/var-dumper": "~2.8|^3.0",
-        "twig/twig": "~1.28|~2.0",
+        "symfony/process": "^4.0-dev",
+        "symfony/serializer": "^4.0-dev",
+        "symfony/translation": "^4.0-dev",
+        "symfony/twig-bridge": "^4.0-dev",
+        "symfony/validator": "^4.0-dev",
+        "symfony/var-dumper": "^4.0-dev",
+        "twig/twig": "~2.0",
         "doctrine/dbal": "~2.2",
         "swiftmailer/swiftmailer": "~5",
         "monolog/monolog": "^1.4.1",
-        "symfony/web-link": "^3.3"
+        "symfony/web-link": "^4.0-dev"
     },
     "conflict": {
         "phpunit/phpunit": "<4.8.35 || >= 5.0, <5.4.3"
@@ -65,8 +65,14 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.1.x-dev"
+            "dev-master": "3.0.x-dev"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/skalpa/Pimple"
+        }
+    ]
 }
