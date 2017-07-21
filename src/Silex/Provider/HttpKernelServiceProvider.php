@@ -26,39 +26,18 @@ class HttpKernelServiceProvider implements ServiceProviderInterface, EventListen
     /**
      * {@inheritdoc}
      */
-    public function register(Container $app)
+    public function register(Container $container)
     {
-        $app['resolver'] = function ($app) {
-            return new ControllerResolver($app['logger']);
-        };
-
-        $app['argument_metadata_factory'] = function ($app) {
-            return new ArgumentMetadataFactory();
-        };
-
-        $app['argument_value_resolvers'] = function ($app) {
-            return array_merge(array(new AppArgumentValueResolver($app)), ArgumentResolver::getDefaultArgumentValueResolvers());
-        };
-
-        $app['argument_resolver'] = function ($app) {
-            return new ArgumentResolver($app['argument_metadata_factory'], $app['argument_value_resolvers']);
-        };
-
-        $app['kernel'] = function ($app) {
-            return new HttpKernel($app['dispatcher'], $app['resolver'], $app['request_stack'], $app['argument_resolver']);
-        };
-
-        $app['request_stack'] = function () {
-            return new RequestStack();
-        };
-
-        $app['dispatcher'] = function () {
-            return new EventDispatcher();
-        };
-
-        $app['callback_resolver'] = function ($app) {
-            return new CallbackResolver($app);
-        };
+        $container->set(array(
+            'resolver' => array(__CLASS__, 'getControllerResolver'),
+            'argument_metadata_factory' => array(__CLASS__, 'getArgumentMetadataFactory'),
+            'argument_value_resolvers' => array(__CLASS__, 'getArgumentValueResolvers'),
+            'argument_resolver' => array(__CLASS__, 'getArgumentResolver'),
+            'kernel' => array(__CLASS__, 'getKernel'),
+            'request_stack' => array(__CLASS__, 'getRequestStack'),
+            'dispatcher' => array(__CLASS__, 'getDispatcher'),
+            'callback_resolver' => array(__CLASS__, 'getCallbackResolver'),
+        ));
     }
 
     /**
@@ -74,5 +53,45 @@ class HttpKernelServiceProvider implements ServiceProviderInterface, EventListen
         if (class_exists(HttpHeaderSerializer::class)) {
             $dispatcher->addSubscriber(new AddLinkHeaderListener());
         }
+    }
+
+    public static function getControllerResolver($app)
+    {
+        return new ControllerResolver($app['logger']);
+    }
+
+    public static function getArgumentMetadataFactory($app)
+    {
+        return new ArgumentMetadataFactory();
+    }
+
+    public static function getArgumentValueResolvers($app)
+    {
+        return array_merge(array(new AppArgumentValueResolver($app)), ArgumentResolver::getDefaultArgumentValueResolvers());
+    }
+
+    public static function getArgumentResolver($app)
+    {
+        return new ArgumentResolver($app['argument_metadata_factory'], $app['argument_value_resolvers']);
+    }
+
+    public static function getKernel($app)
+    {
+        return new HttpKernel($app['dispatcher'], $app['resolver'], $app['request_stack'], $app['argument_resolver']);
+    }
+
+    public static function getRequestStack()
+    {
+        return new RequestStack();
+    }
+
+    public static function getDispatcher()
+    {
+        return new EventDispatcher();
+    }
+
+    public static function getCallbackResolver($app)
+    {
+        return new CallbackResolver($app);
     }
 }
